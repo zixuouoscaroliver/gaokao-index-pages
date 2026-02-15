@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高考报考机构外挂赋能系统 - Prototype</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="bg-glow bg-glow-a"></div>
+  <div class="bg-glow bg-glow-b"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <div>
+        <h1>高考报考机构外挂赋能系统</h1>
+        <p>不替代机构方法论，只兜底风险、留痕和交付稳定性</p>
+      </div>
+    </div>
+    <div class="top-meta">
+      <span class="badge">兼容多机构流派</span>
+      <span class="badge">最小门禁 + 增强门禁</span>
+      <span class="badge">交付可复核</span>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="workspace">交付工作台</button>
+    <button class="tab" data-tab="roi">机构ROI看板</button>
+  </nav>
+
+  <main id="workspace" class="layout tab-pane active">
+    <section class="panel panel-left">
+      <div class="panel-head">
+        <h2>线索与案件看板</h2>
+        <select id="stageFilter">
+          <option value="all">全部阶段</option>
+          <option value="线索">线索</option>
+          <option value="M1资料齐备">M1资料齐备</option>
+          <option value="M2方案迭代">M2方案迭代</option>
+          <option value="M3终审放行">M3终审放行</option>
+        </select>
+      </div>
+      <div id="caseList" class="case-list"></div>
+    </section>
+
+    <section class="panel panel-main">
+      <div class="panel-head">
+        <h2>案件工作台</h2>
+        <div id="selectedCaseTag" class="tag">未选择案件</div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>客户画像</h3>
+          <div id="profile" class="kv"></div>
+        </article>
+
+        <article class="card">
+          <h3>机构适配与档位</h3>
+          <div class="row">
+            <label for="templateSelect">机构方法模板</label>
+            <select id="templateSelect"></select>
+          </div>
+          <div class="row">
+            <label for="tierSelect">产品档位</label>
+            <select id="tierSelect"></select>
+          </div>
+          <div id="slaInfo" class="kv"></div>
+        </article>
+
+        <article class="card">
+          <h3>外挂赋能效果</h3>
+          <div id="empowerInfo" class="kv"></div>
+        </article>
+
+        <article class="card card-wide">
+          <h3>流程推进</h3>
+          <div id="stageFlow" class="flow"></div>
+          <div class="row actions">
+            <button id="btnNext">推进到下一阶段</button>
+            <button id="btnL2" class="ghost">触发L2结构调整</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>最小门禁（必过）</h3>
+          <div id="gateList" class="check-list"></div>
+          <button id="btnGate" class="full">生成放行结论</button>
+          <p id="gateResult" class="hint"></p>
+        </article>
+
+        <article class="card">
+          <h3>增强门禁（可选）</h3>
+          <div id="enhancedList" class="check-list"></div>
+        </article>
+
+        <article class="card">
+          <h3>证据链（兼容机构口径）</h3>
+          <div id="evidenceList" class="evidence-list"></div>
+        </article>
+
+        <article class="card card-wide">
+          <h3>自动交付件预览</h3>
+          <pre id="docPreview" class="doc"></pre>
+          <div class="row actions">
+            <button id="btnExportDoc" class="ghost">导出OP-09文本</button>
+            <button id="btnExportJson" class="ghost">导出案件JSON</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <main id="roi" class="roi-layout tab-pane">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>机构老板视角：ROI自动计算</h2>
+        <div class="tag">基于一线数据自动生成</div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>销售一线数据源</h3>
+          <div class="kv">
+            <div><b>支持CSV字段</b></div>
+            <div><code>phase,order_amount,is_dispute,rework_hours,labor_hour_cost</code></div>
+            <div><b>phase取值</b>：<code>before</code>（上线前）/ <code>after</code>（上线后）</div>
+            <div><b>示例</b>：系统已内置演示数据，可直接计算</div>
+          </div>
+          <div class="row">
+            <input id="roiFile" type="file" accept=".csv">
+          </div>
+          <div class="row actions">
+            <button id="btnUseDemo">使用内置演示数据</button>
+            <button id="btnCalcRoi" class="ghost">重新计算</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>核心收益（自动）</h3>
+          <div id="roiMetrics" class="kv"></div>
+        </article>
+
+        <article class="card">
+          <h3>数据质量检查</h3>
+          <div id="roiDataQuality" class="kv"></div>
+        </article>
+
+        <article class="card card-wide">
+          <h3>数据快照</h3>
+          <pre id="roiDataPreview" class="doc"></pre>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
